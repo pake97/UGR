@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Collaborative Graph Repair</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+    <style type="text/css">
+      #mynetwork {
+        width: 100%;
+        height: 250px;
+        border: 1px solid lightgray;
+      }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/index.js')}}"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body style="background: #fff">
+    <div class="wrapper">
+      <div id="nodeModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <h3>How do you want to update this node?</h3>
+          <p>Select the lable to update and insert the value</p>
+          <div class="modal-action">
+            <select id="actionSelection"></select>
+            <input type="text" id="newValue" placeholder="Enter new value" />
+          </div>
+          <div class="modal-footer" id="updateFooter">
+            <button id="closeNode">Back</button>
+          </div>
+        </div>
+      </div>
+      <div id="linkModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <h4 id="linkInfo"></h4>
+          <p>Do you want to delete this edge?</p>
+          <div class="modal-footer" id="deleteFooter">
+            <button id="closeLink">Back</button>
+          </div>
+        </div>
+      </div>
+      <h1 style="color: black">Repair Star Wars Graph</h1>
+      <p style="font-size: 16px; color: black;">We have the following constraint in our graph :</p>
+      <p id="explanation" style="color: black">
+       {{explanation}}
+      </p>
+      <p id="pattern" style="visibility: hidden; height: 0px; font-size: 0px">
+        {{pattern}}
+      </p>
+      <div id="mynetwork"></div>
+      
+      <fieldset class="repairOptions" id="repairOptions" style="margin-inline: auto; height: 200px; overflow: scroll;">
+        <legend class="color: black;">How you would repair the violation?</legend>
+        {% for rep in repairs %}
+        <div class="repairOption" style="margin-top: 8px;">
+          <input type="radio" id="huey" name="rep" value="{{rep[0]}}"/>
+          <label for="huey">{{rep[1]}}</label>
+          {% if "INPUT" in rep[0] %}
+        <input type="text" id="{{rep[0]}}" placeholder="value">
+        {% endif %}
+        </div>
+        {% endfor %}
+      </fieldset>
+      <button id="repairButton" style="color:forestgreen; padding: 2px; font-size: 14px; width: 50px; height: 20px; margin-inline: auto;">Repair</button>
+      <p id="violationId" style="visibility: hidden; height: 0px; font-size: 0px">
+        {{violationId}}
+      </p>
+      <p id="time" style="visibility: hidden; height: 0px; font-size: 0px">
+        {{t}}
+      </p>
+      <script type="text/javascript">
+        var str = document.getElementById("pattern").innerHTML;
+        var pattern = JSON.parse(str);
+        nodi = [];
+        props = [];
+        for (var key in pattern) {
+          if (pattern.hasOwnProperty(key)) {
+            
+            var val = pattern[key];
+            if(val.nodes.length==0)
+              nodi.push({ id: parseInt(val.id), label: val.label+ JSON.stringify(val.properties) , title : JSON.stringify(val.properties)});
+            else
+              props.push({ from: parseInt(val.nodes[0]), to: parseInt(val.nodes[1]) , label : val.type});
+          }
+        }
+        // create an array with nodes
+
+        var nodes = new vis.DataSet(
+         nodi
+        );
+
+        // create an array with edges
+        var edges = new vis.DataSet(
+          props
+        );
+
+        // create a network
+        var container = document.getElementById("mynetwork");
+        var data = {
+          nodes: nodes,
+          edges: edges,
+        };
+        var options = {nodes: {shape: "box"}, mass:10, margin:2, fixed:false};
+        var network = new vis.Network(container, data, options);
+      </script>
+      <script>
+        btn = document.getElementById("repairButton");
+        btn.addEventListener("click",  function(){
+        
+          if(document.querySelector('input[name="rep"]:checked').value===null){
+            alert("Please select a repair");
+          }
+          else{
+            var violationId = document.getElementById("violationId").innerHTML;
+            var repair = document.querySelector('input[name="rep"]:checked').value;
+            if(repair.includes("INPUT")){
+              repair = repair.replace("INPUT", document.getElementById(repair).value)
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/repair", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(
+              JSON.stringify({
+                violationId: violationId,
+                repair: repair,
+                time: document.getElementById("time").innerHTML,
+              })
+            );
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                console.log(json);
+                if (json.msg === "REPAIRED") {
+                  alert("Repair successful");
+                  location.reload();
+                } else if (json.msg === "UNSAFE") {
+                  alert("You repair is unsafe");
+                }else {
+                  alert("Repair failed");
+                }
+              }
+            };
+          }
+        })
+      </script>
+    </div>
+  </body>
+</html>
