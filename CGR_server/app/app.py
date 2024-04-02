@@ -7,7 +7,7 @@ from grdg.computeRepairs4 import computeRepairs
 from grdg.checkSafety3 import checkSafety
 import time
 import json
-#load_config("./config/config.yml")
+
 config.DATABASE_URL = "YOUR AURADB CONNECTION STRING" 
 # Create the app object
 app = Flask(__name__)

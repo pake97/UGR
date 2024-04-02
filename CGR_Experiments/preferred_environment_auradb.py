@@ -14,7 +14,7 @@ from utils.checkConstraints_preferred import checkConstraints
 from config.movies_query import movies_queries
 from config.fincen_query import fincen_queries
 from config.stackoverflow_query import stackoverflow_query
-from config.wwwc2019_query import wwwc2019_query
+from CGR_Experiments.config.wwc2019_query import wwwc2019_query
 from config.sw_demo_query import sw_demo_query
 from utils.computeRepairs_preferred_auradb import computeRepairs
 from utils.checkSafety3 import checkSafety
