@@ -1,10 +1,10 @@
 server_uri: bolt://localhost:7687/
-admin_user: neo4j
-admin_pass: AmePake97
+admin_user: YOUR_NEO4J_USERNAME
+admin_pass: YOUR_NEO4J_PASSWORD
 
 files:
   # payers
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/payers.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/config/output/csv/payers.csv
     compression: none
     skip_file: false
     cql: |
@@ -17,7 +17,7 @@ files:
             p.state=row.STATE_HEADQUARTERED
 
   # encounters
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/encounters.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/encounters.csv
     compression: none
     skip_file: false
     cql: |
@@ -44,7 +44,7 @@ files:
         MERGE (e)-[:HAS_PAYER]->(pa)
 
   # providers
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/providers.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/providers.csv
     compression: none
     skip_file: false
     cql: |
@@ -59,7 +59,7 @@ files:
       MERGE (p)-[:HAS_ADDRESS]->(a)
 
   # patients
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/patients.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/patients.csv
     compression: none
     skip_file: false
     cql: |
@@ -81,7 +81,7 @@ files:
         MERGE (p)-[:HAS_ADDRESS]->(a)
 
   # payer transitions
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/payer_transitions.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/payer_transitions.csv
     compression: none
     skip_file: false
     cql: |
@@ -94,7 +94,7 @@ files:
       SET e.year=toInteger(row.END_YEAR)
 
   # allergies
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/allergies.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/allergies.csv
     compression: none
     skip_file: false
     cql: |
@@ -118,7 +118,7 @@ files:
           MERGE (as)-[:HAS_END]->(ae)
 
   # conditions
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/conditions.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/conditions.csv
     compression: none
     skip_file: false
     cql: |
@@ -142,7 +142,7 @@ files:
         MERGE (cs)-[:HAS_END]->(ce)
 
   # medications
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/medications.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/medications.csv
     compression: none
     skip_file: false
     cql: |
@@ -166,7 +166,7 @@ files:
           MERGE (ps)-[:HAS_END]->(pe)
 
   # procedures
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/procedures.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/procedures.csv
     compression: none
     skip_file: false
     cql: |
@@ -183,7 +183,7 @@ files:
           MERGE (pe)-[:HAS_PROCEDURE]->(r)
 
   # observations
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/observations.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/observations.csv
     compression: none
     skip_file: false
     cql: |
@@ -198,7 +198,7 @@ files:
       SET o += attr
 
   # care plans
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/careplans.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/careplans.csv
     compression: none
     skip_file: false
     cql: |
@@ -222,7 +222,7 @@ files:
           MERGE (cs)-[:HAS_END]->(ce)
 
   # organizations
-  - url: file:///Users/amedeo/Desktop/pyingest/output/csv/organizations.csv
+  - url: file://PATH_TO_THIS_DIRECTORY/output/csv/organizations.csv
     compression: none
     skip_file: false
     cql: |

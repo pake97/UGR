@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template, url_for, redirect
-from utils.neo4j_connector import LocalServer, load_config
 from neomodel import db, config, StructuredNode, RelationshipTo, RelationshipFrom
 from config.sw_query import sw_query
 from matplotlib.figure import Figure
@@ -9,7 +8,7 @@ from grdg.checkSafety3 import checkSafety
 import time
 import json
 #load_config("./config/config.yml")
-config.DATABASE_URL = "neo4j+s://neo4j:0DyYkZuUJ04N70p8AjGZ4MshDW6QPjpB9KkI6Ghu-6g@a6e50c1e.databases.neo4j.io" 
+config.DATABASE_URL = "YOUR AURADB CONNECTION STRING" 
 # Create the app object
 app = Flask(__name__)
 neo4jConnector = Neo4jConnector(config.DATABASE_URL)

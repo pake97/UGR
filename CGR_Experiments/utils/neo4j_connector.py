@@ -11,7 +11,7 @@ from neomodel import db, config, StructuredNode, RelationshipTo, RelationshipFro
 import subprocess
 import os
 from .injest_synthea import injest
-config.DATABASE_URL = "bolt://neo4j:AmePake97@localhost:7687/neo4j"
+config.DATABASE_URL = #your neo4j conenction string "bolt://username:password@localhost:7687/DBNAME"
 
 class Neo4jConnector():
 
@@ -30,7 +30,7 @@ class Neo4jConnector():
                 print(e)
         else:
             try:
-                os.system('/Users/amedeo/Downloads/neo4j-community-5.12.0/bin/cypher-shell -u neo4j -p AmePake97 -f ./config/'+dataset+'.cypher')
+                os.system('PATH_TO_NEO4J_COMMUNITY/bin/cypher-shell -u neo4j -p AmePake97 -f ./config/'+dataset+'.cypher')
             except Exception as e:
                 print(e)
 

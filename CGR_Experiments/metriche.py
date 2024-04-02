@@ -13,13 +13,12 @@ from utils.checkConstraintsM import checkConstraints
 from config.movies_query import movies_queries
 from config.fincen_query import fincen_queries
 from config.stackoverflow_query import stackoverflow_query
-from config.wwwc2019_query import wwwc2019_query
+from CGR_Experiments.config.wwc2019_query import wwwc2019_query
 from utils.computeRepairs4 import computeRepairs
 from utils.checkSafety3 import checkSafety
 from utils.applyRepair import applyRepair
 from utils.restore_graph import restore_graph
 from config.sw_query import sw_queries
-from utils.restoreConstraints2 import restoreConstraints
 from utils.compute_metrics2 import compute_metrics
 from agent.user2 import User
 from config.synthea_query import synthea_query

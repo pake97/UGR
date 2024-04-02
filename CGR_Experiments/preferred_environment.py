@@ -14,7 +14,7 @@ from utils.checkConstraints_preferred import checkConstraints
 from config.movies_query import movies_queries
 from config.fincen_query import fincen_queries
 from config.stackoverflow_query import stackoverflow_query
-from config.wwwc2019_query import wwwc2019_query
+from config.wwc2019_query import wwc2019_query
 from config.sw_query import sw_queries
 from utils.computeRepairs_preferred import computeRepairs
 from utils.checkSafety3 import checkSafety
@@ -114,7 +114,7 @@ class CGREnvironment:
                         for c in configs["num_op_preferred"]:
                             possible_repairs.append(c)
                             
-                    if(self.mode=="schema"):
+                    if(self.mode=="label"):
                         for c in configs["schema_preferred"]:
                             possible_repairs.append(c)
 
@@ -246,7 +246,7 @@ class CGREnvironment:
             return fincen_queries
         if dataset == "stackoverflow":
             return stackoverflow_query
-        if dataset == "wwwc2019":
+        if dataset == "wwc2019":
             return wwwc2019_query
         if dataset == "synthea":
             return synthea_query
@@ -275,7 +275,7 @@ if __name__ == "__main__":
         error = [150,200,6,300,0]
     if(dataset=="stackoverflow"):
         error = [1,1,2,277]
-    if(dataset=="wwwc2019"):
+    if(dataset=="wwc2019"):
         error = [9,21,6,300,0]
     if(dataset=="synthea"):
         error = [1,1,1,1000,1,1]

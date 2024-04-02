@@ -11,7 +11,7 @@ from neomodel import db, config, StructuredNode, RelationshipTo, RelationshipFro
 import subprocess
 import os
 from .injest_synthea import injest
-config.DATABASE_URL = "neo4j+s://neo4j:0DyYkZuUJ04N70p8AjGZ4MshDW6QPjpB9KkI6Ghu-6g@a6e50c1e.databases.neo4j.io" 
+config.DATABASE_URL = # your AuraDB connection string
 
 class Neo4jConnector():
 
