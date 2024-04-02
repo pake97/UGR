@@ -99,7 +99,7 @@ files:
 
 
 ```bash
-python3 envivorment.py dataset safety assignment users answer
+python3 environment.py dataset safety assignment users answer
 ```
 **params :** \
 dataset : sw (StarWars), stackoverflow, wwc2019, synthea, fincen.
@@ -138,10 +138,22 @@ safety: True, False.
 
 mode : 'label'(Label preferred repair),  'delete'(Delete preferred repair),  'update'(Update preferred repair),  'number'(Number of operations preferred repair).
 
-## Run the entire experiment
+## Run the entire experiment for preferred repairs
 
 A premade bash script run all the simulations of the paper.
 
 ```bash
 ./run_preferred.sh > ouput_preferred.txt
 ```
+
+## Parse the results
+
+To parse the resuls, inside the parser script change the filename for your output file and run: 
+
+```bash
+python3 parser.py
+python3 preferred_parser.py
+```
+
+
+To plot the results, use the plot scripts by updating the file to read your outup file.

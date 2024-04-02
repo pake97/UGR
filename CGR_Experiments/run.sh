@@ -9,7 +9,7 @@ do
 				for answer in 0 0.25 0.5 0.75 1
 				do					
 					echo "Running $dataset $safety $assignment $users $answer"
-					python3 envivorment.py $dataset $safety $assignment $users $answer						
+					python3 environment.py $dataset $safety $assignment $users $answer						
 				done
 			done
 		done
