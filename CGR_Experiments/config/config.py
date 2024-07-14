@@ -1,2 +1,0 @@
-#neo4j
-DATABASE_URL = "bolt://YOUR_USERNAME:YOURPASSWORD@localhost:7687"

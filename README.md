@@ -1,10 +1,10 @@
-# Collaborative Graph Repair Under Denial Constraints
+# User-Centric Property Graph Repairs
 
-Code repository for the paper : "Collaborative Graph Repair Under Denial Constraints". Authors: Amedeo Pachera, Angela Bonifati, Andrea Mauri.
+Code repository for the paper : "User-Centric Property Graph Repairs".
 
 ## Folder Structure
 
-- **CGR_Experiments** : Code for the experiments
-- **CGR_server** : Code for the user study
-- **CollaborativeGraphRepair_Supplementary_material.pdf** : Supplementary material attached to the paper.
+- **UGR_Experiments** : Code for the experiments
+- **UGR_server** : Code for the user study
+- **Supplementary_Material_User-Centric_Property_Graph_Repairs.pdf** : Supplementary material attached to the paper.
 
