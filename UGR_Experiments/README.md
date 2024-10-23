@@ -101,7 +101,7 @@ files:
 
 [Download](https://github.com/neo4j-graph-examples/icij-offshoreleaks/tree/main/data) the ICIJ dump file.
 Upload the dump file into neo4j (desktop version or via the enterprise edition). 
-We already prepare a dump version of ICIJ with the sampled violation we used in our experiment. You can find it in the /icij-dump folder.
+We already prepare a dump version of ICIJ with the sampled violation we used in our experiment. You can find it at [this link](https://zenodo.org/records/13982790).
 ## Run a simulation
 
 
