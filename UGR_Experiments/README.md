@@ -95,6 +95,13 @@ files:
   # payers
   - url: file://PATH_TO_THIS_DIRECTORY/config/output/csv/payers.csv # repeat for every url
 ```
+
+
+### ICIJ ###
+
+[Download](https://github.com/neo4j-graph-examples/icij-offshoreleaks/tree/main/data) the ICIJ dump file.
+Upload the dump file into neo4j (desktop version or via the enterprise edition). 
+We already prepare a dump version of ICIJ with the sampled violation we used in our experiment. You can find it in the /icij-dump folder.
 ## Run a simulation
 
 
@@ -108,7 +115,7 @@ dataset : sw (StarWars), stackoverflow, wwc2019, synthea, fincen.
 safety: True, False.
 
 
-assignment: random, betweennessDesc (betweenness descending order), betweennessAsc (betweenness ascending order), degreeDesc (degree descending order), degreeAsc (degree ascending order), prDesc(PageRank descending order) prAsc (PageRank ascending order).
+assignment: random, degreeDesc (Density Based Assignment), degreeAsc (uQAR-assignment), prDesc(Relevance Based Assignment).
 
 
 users : 5,10,15,20,....
@@ -144,6 +151,33 @@ A premade bash script run all the simulations of the paper.
 
 ```bash
 ./run_preferred.sh > ouput_preferred.txt
+```
+
+## Run the experiment in isolation
+
+
+```bash
+python3 envivormentIsolation.py dataset safety assignment users answer
+```
+**params :** \
+dataset : sw (StarWars), stackoverflow, wwc2019, synthea, fincen.
+
+
+safety: True, False.
+
+assignment: degreeAsc (uQAR-assignment).
+
+users : 1
+
+answer : [0,1]
+
+
+## Run the experiment with ICIJ
+
+
+```bash
+python3 envivormentReal.py 
+python3 preferred_environment_real.py 
 ```
 
 ## Parse the results
